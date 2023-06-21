@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Unit Converter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap" rel="stylesheet">
+    <style>
+        /* Additional custom styling */
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="bg-dark" style="font-family: 'Poppins', sans-serif;">
+    <div class=" py-5 mb-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://icon-library.com/images/unit-icon/unit-icon-27.jpg" alt=""
+            width="72" height="72">
+        <h1 class="display-5 fw-bold text-light" style="font-family: 'Poppins', sans-serif;">Unit Convertor</h1>
+
+        <div class="container">
+            <div class="form-group">
+                <label for="inputValue" class=" fw-bold">Value:</label>
+                <input type="number" class="form-control" id="inputValue" placeholder="Enter a value">
+            </div>
+
+            <div class="form-group" >
+                <label for="fromUnit" class=" fw-bold">From:</label>
+                <select class="form-control" id="fromUnit">
+                    <option value="Select_fromUnit">Select a Unit</option>
+                    <option value="meter">Meter</option>
+                    <option value="centimeter">Centimeter</option>
+                    <option value="kilometer">Kilometer</option>
+                    <option value="inch">Inch</option>
+                    <option value="pound">Pound</option>
+                    <option value="kilogram">Kilogram</option>
+                    <option value="litre">Litre</option>
+                    <option value="millilitre">Millilitre</option>
+                    <option value="celcius">Celcius</option>
+                    <option value="fahrenheit">Fahrenheit</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="toUnit" class=" fw-bold">To:</label>
+                <select class="form-control" id="toUnit">
+                    <option value="Select_toUnit">Select a Unit</option>
+                    <option value="meter">Meter</option>
+                    <option value="centimeter">Centimeter</option>
+                    <option value="kilometer">Kilometer</option>
+                    <option value="inch">Inch</option>
+                    <option value="pound">Pound</option>
+                    <option value="kilogram">Kilogram</option>
+                    <option value="litre">Litre</option>
+                    <option value="millilitre">Millilitre</option>
+                    <option value="celcius">Celcius</option>
+                    <option value="fahrenheit">Fahrenheit</option>
+                </select>
+            </div>
+
+            <button class="btn btn-primary btn-block" onclick="convert()">Convert</button>
+
+            <p id="result"></p>
+        </div>
+        <footer class="pt-3 mt-4 text-light">
+            <ul class="nav justify-content-center pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
+            </ul>
+            <p class="text-center text-light">© 2023 Unit Convertor. All Rights Reserved</p>
+            <p class="text-center text-light">Made with ❤️ by Hardik</p>
+    </div>
+
+    <script>
+        function convert() {
+            var inputValue = document.getElementById("inputValue").value;
+            var fromUnit = document.getElementById("fromUnit").value;
+            var toUnit = document.getElementById("toUnit").value;
+            var result = document.getElementById("result");
+
+            // Perform conversion based on selected units
+            var convertedValue;
+            if(fromUnit=="" || toUnit=="" || inputValue==0){
+                convertedValue="Please Enter the values";
+            }
+            else if (fromUnit === toUnit) {
+                convertedValue = inputValue;
+            }
+            else if(fromUnit==="meter"){
+                if(toUnit=="centimeter"){
+                    convertedValue=inputValue*100;
+                }
+                if(toUnit=="kilometer"){
+                    convertedValue=inputValue/1000;
+                }
+                if(toUnit=="inch"){
+                    convertedValue=inputValue*39.37008;;
+                }
+            }
+            else if(fromUnit==="centimeter"){
+                if(toUnit=="meter"){
+                    convertedValue=inputValue/100;
+                }
+                if(toUnit=="kilometer"){
+                    convertedValue=inputValue/100000;
+                }
+                if(toUnit=="inch"){
+                    convertedValue=inputValue*0.3937008;
+                }
+            }
+            else if(fromUnit==="kilometer"){
+                if(toUnit=="meter"){
+                    convertedValue=inputValue*100;
+                }
+                if(toUnit=="centimeter"){
+                    convertedValue=inputValue*100000;
+                }
+                if(toUnit=="inch"){
+                    convertedValue=inputValue*39370.08;
+                }
+            }
+            else if(fromUnit==="inch"){
+                if(toUnit=="meter"){
+                    convertedValue=inputValue*0.0254;
+                }
+                if(toUnit=="centimeter"){
+                    convertedValue=inputValue*2.54;
+                }
+                if(toUnit=="kilometer"){
+                    convertedValue=inputValue*0.0000254;
+                }
+            }
+            else if(fromUnit=="kilogram" && toUnit=="pound"){
+                convertedValue=inputValue*2.204623;
+            }
+            else if(fromUnit=="pound" && toUnit=="kilogram"){
+                convertedValue=inputValue/2.204623;
+            }
+            else if(fromUnit=="litre" && toUnit=="millilitre"){
+                convertedValue=inputValue*1000;
+            }
+            else if(fromUnit=="millilitre" && toUnit=="litre"){
+                convertedValue=inputValue/1000;
+            }
+            else if(fromUnit=="fahrenheit" && toUnit=="celcius"){
+                convertedValue=(inputValue-32)/1.80;
+            }
+            else if(fromUnit=="celcius" && toUnit=="fahrenheit"){
+                convertedValue=inputValue*1.80 +32;
+            }
+            else{
+                convertedValue="Unit Selection Error"
+            }
+            // Add more conversion cases for other units
+
+            // Display the result
+            if(convertedValue=="Unit Selection Error"){
+                result.innerHTML = "Unit Selection Error";
+            }
+            else if(convertedValue=="Please Enter the values"){
+                result.innerHTML="Please Enter the values";
+            }
+            else{
+                result.innerHTML = inputValue + " " + fromUnit + " = " + convertedValue + " " + toUnit;
+            }
+        }
+    </script>
+</body>
+
+</html>
